@@ -29,7 +29,6 @@ public class ConexionBDD {
 		try {
 			con = DriverManager.getConnection(url,user,password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new BDDException("No se pudo conectar a la base de datos");
 		}
