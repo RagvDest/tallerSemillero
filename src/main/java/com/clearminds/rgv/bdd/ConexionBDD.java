@@ -1,5 +1,6 @@
 package com.clearminds.rgv.bdd;
 
+import java.io.File;
 import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,6 +14,7 @@ public class ConexionBDD {
 	private static String leerPropiedad(String prop){
 		Properties p = new Properties();
 		try {
+			File f=new File("conexion.properties");
 			p.load(new FileReader("conexion.properties"));
 			System.out.println(prop+": "+p.getProperty(prop));
 			return p.getProperty(prop);
