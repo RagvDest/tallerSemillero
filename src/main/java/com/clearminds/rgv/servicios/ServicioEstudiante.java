@@ -1,6 +1,7 @@
 package com.clearminds.rgv.servicios;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.clearminds.rgv.bdd.ConexionBDD;
 import com.clearminds.rgv.dtos.Estudiante;
@@ -11,6 +12,18 @@ public class ServicioEstudiante extends ServicioBase{
 	public void insertarEstudiante(Estudiante est) throws BDDException{
 		abrirConexion();
 		System.out.println("Insertando estudiante: "+est.toString());
-		cerrarConexion();
+		Statement stmt = null;
+		try {
+			stmt = getConexion().createStatement();
+			String sql = "insert into estudiantes(nombre,apellido) "
+					+ "values('"+est.getNombre()+"','"+est.getApellido()+"')";
+			System.out.println("Script: "+sql);
+			stmt.executeUpdate(sql);
+			cerrarConexion();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new BDDException("Error al insertar estudiante");
+		}
+		
 	}
 }

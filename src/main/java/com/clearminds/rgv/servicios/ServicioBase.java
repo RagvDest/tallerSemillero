@@ -23,8 +23,10 @@ public class ServicioBase {
 			}
 		}
 		System.out.println("Conexión cerrada");
-			
-		
 	}
+	public Connection getConexion() {
+		return conexion;
+	}
+	
 	
 }
