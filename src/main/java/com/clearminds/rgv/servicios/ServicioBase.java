@@ -11,13 +11,19 @@ public class ServicioBase {
 	
 	public void abrirConexion() throws BDDException{
 		conexion = ConexionBDD.obtenerConexion();
+		System.out.println("Conexión exitosa");
 	}
-	public void cerrarConexion() throws SQLException{
+	public void cerrarConexion() throws BDDException{
 		if(conexion!=null){
-			conexion.close();
-			System.out.println("Conexión cerrada");			
-		}else
-			System.out.println("Error al cerrar conexión");
+			try {
+				conexion.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+				throw new BDDException("Error al cerrar conexión");
+			}
+		}
+		System.out.println("Conexión cerrada");
+			
 		
 	}
 	
